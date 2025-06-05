@@ -14,7 +14,7 @@
 STAR --runThreadN 70 \
      --runMode genomeGenerate \
      --limitGenomeGenerateRAM 20000000000 \
-     --genomeDir /work/pancreas/takemoto/star_index/anotacao_primaria \
-     --genomeFastaFiles /work/pancreas/takemoto/database/GRCh38.primary_assembly.genome.fa \
-     --sjdbGTFfile /work/pancreas/takemoto/database/gencode.v47.basic.annotation.gtf \
+     --genomeDir /work/pancreas/takemoto/RNA_seq/data/reference/star_index/anotacao_primaria \
+     --genomeFastaFiles /work/pancreas/takemoto/RNA_seq/data/reference/database/GRCh38.primary_assembly.genome.fa \
+     --sjdbGTFfile /work/pancreas/takemoto/RNA_seq/data/reference/database/gencode.v47.basic.annotation.gtf \
      --sjdbOverhang 149

@@ -1,10 +1,19 @@
 #!/usr/bin/env Rscript
 
 library(Rsubread)
+# Diretório raiz
+root_dir <- "/work/pancreas/takemoto/RNA_seq/"
+
 
 # Caminhos
-bam_dir <- "/work/pancreas/takemoto/alinhamento_bam_novo"
-gtf_path <- "/work/pancreas/takemoto/bam_star/DEG_sem_FMR1/gencode.v47.FMR1_exon13-16_removed.gtf"
+bam_dir <- file.path(root_dir, "data", "bam", "bam_star")
+gtf_path <- file.path(root_dir, "data", "reference", "database", "gencode.v47.FMR1_exon13-16_removed.gtf")
+
+results_dir <- file.path(root_dir, "results", "feature_counts")
+if (!dir.exists(results_dir)) {
+  dir.create(results_dir, recursive = TRUE)
+}
+output_file <- file.path(results_dir, "counts_FMR1_exons_removidos.csv")
 
 # 1. Verificar arquivo GTF
 if(!file.exists(gtf_path)) {
@@ -42,7 +51,6 @@ fcResults <- featureCounts(
 )
 
 # 4. Salvar resultados
-output_file <- "counts_FMR1_exons_removidos2.csv"
 write.csv(fcResults$counts, output_file)
 
 cat("\nAnálise concluída com sucesso!\n")

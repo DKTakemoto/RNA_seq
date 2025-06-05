@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Define o diretório com os arquivos FASTQ
-fastq_dir="/work/pancreas/takemoto/bbtols"
+fastq_dir="/data/raw_fastq"
 
 # Define o diretório de saída
-output_dir="/work/pancreas/takemoto/splicing_alternativo/trimmed2"
+output_dir="/data/trimmed_fastq/fastp_trim"
 
 # Cria o diretório de saída, se não existir
 mkdir -p "$output_dir"

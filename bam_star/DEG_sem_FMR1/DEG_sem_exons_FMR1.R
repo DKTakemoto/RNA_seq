@@ -7,16 +7,19 @@ library(pheatmap)
 library(dplyr)
 library(ggrepel)
 
+# Diretórios
+root_dir <- "/work/pancreas/takemoto/RNA_seq"
+figures_dir <- file.path(root_dir, "figures", "DEG_sem_FMR1")
+dir.create(figures_dir, recursive = TRUE, showWarnings = FALSE)
+
 # Ler os metadados
-colData <- read.csv("metadata_DEG.csv", header = TRUE, row.names = 1)
+colData <- read.csv(file.path(root_dir, "data", "reference", "metadata_DEG.csv"), header = TRUE, row.names = 1)
 
 # Ler matriz de contagens
-countData <- read.csv("counts_FMR1_exons_removidos2.csv", header = TRUE, row.names = 1)
+countData <- read.csv(file.path(root_dir, "results", "feature_counts", "counts_FMR1_exons_removidos.csv"), header = TRUE, row.names = 1)
 
 # Ajustar os nomes das colunas para combinar com colData
 colnames(countData) <- gsub("trimmed_(.*?)_.*", "\\1", colnames(countData))
-rownames(colData)
-
 countData <- countData[, rownames(colData)]
 
 # Ajustar o nível do fator
@@ -25,18 +28,14 @@ colData$Condition <- relevel(colData$Condition, ref = "Control")
 
 # Criar o objeto DESeqDataSet
 dds <- DESeqDataSetFromMatrix(countData, colData, design = ~ Condition)
-
-# Rodar DESeq apenas uma vez no objeto completo
 dds <- DESeq(dds)
 
-# Comparação circRNAx13x14x15x16 vs Control
+# Comparações
 res_1_vs_control <- results(dds, contrast = c("Condition", "circRNAx13x14x15x16", "Control"))
-
-# Comparação circRNAx13x16 vs Control
 res_2_vs_control <- results(dds, contrast = c("Condition", "circRNAx13x16", "Control"))
 
 # Importar anotação
-anotacao <- read.delim("mart_export.txt", header = FALSE, col.names = c("Gene_ID", "Gene_Type", "Gene_Name"))
+anotacao <- read.delim(file.path(root_dir, "data", "reference",  "mart_export.txt"), header = FALSE, col.names = c("Gene_ID", "Gene_Type", "Gene_Name"))
 anotacao <- as.data.frame(apply(anotacao, 2, function(x) gsub('\\s+', '', x)))
 
 # Adicionar coluna de nomes dos genes
@@ -58,24 +57,14 @@ res_tb_2$Regulation <- "No sig"
 res_tb_2$Regulation[res_tb_2$log2FoldChange >= 0.58 & res_tb_2$padj <= 0.05] <- "Upregulated"
 res_tb_2$Regulation[res_tb_2$log2FoldChange <= -0.58 & res_tb_2$padj <= 0.05] <- "Downregulated"
 
-# Agora filtrar DEGs significativos já anotados
-sig_DEG_1_vs_control <- res_tb_1 %>%
-  filter(Regulation %in% c("Upregulated", "Downregulated"))
+# Filtrar DEGs significativos
+sig_DEG_1_vs_control <- res_tb_1 %>% filter(Regulation %in% c("Upregulated", "Downregulated"))
+sig_DEG_2_vs_control <- res_tb_2 %>% filter(Regulation %in% c("Upregulated", "Downregulated"))
 
-sig_DEG_2_vs_control <- res_tb_2 %>%
-  filter(Regulation %in% c("Upregulated", "Downregulated"))
-
-# Salvar resultados dos DEGs significativos
-write.csv(sig_DEG_1_vs_control, file = "DEGs_C3_vs_N.csv", row.names = FALSE)
-write.csv(sig_DEG_2_vs_control, file = "DEGs_C2_vs_N.csv", row.names = FALSE)
-
-# Combinar tabelas de DEGs
-combined_DEGs <- rbind(sig_DEG_1_vs_control, sig_DEG_2_vs_control)
-write.csv(combined_DEGs, file = "DEGs_combined_C3x_C2_vs_N.csv", row.names = FALSE)
-
-
-# Visualizar os DEGs pelo MAPlot
-plotMA(dds)
+# Salvar resultados
+write.csv(sig_DEG_1_vs_control, file = file.path(root_dir, "results", "DEG_sem_FMR1", "DEGs_C3_vs_N.csv"), row.names = FALSE)
+write.csv(sig_DEG_2_vs_control, file = file.path(root_dir, "results", "DEG_sem_FMR1", "DEGs_C2_vs_N.csv"), row.names = FALSE)
+write.csv(rbind(sig_DEG_1_vs_control, sig_DEG_2_vs_control), file = file.path(root_dir, "results", "DEG_sem_FMR1", "DEGs_combined_C3x_C2_vs_N.csv"), row.names = FALSE)
 
 # PCA
 vsd <- vst(dds)
@@ -97,38 +86,37 @@ pca <- ggplot(pcaData, aes(PC1, PC2, color = Condition)) +
     legend.text = element_text(size = 14)
   )
 
-ggsave("PCA_sem_FMR1.tiff", plot = pca, units = "in", width = 9, height = 6, dpi = 500)
+ggsave(filename = file.path(figures_dir, "PCA_sem_FMR1.tiff"), plot = pca, units = "in", width = 9, height = 6, dpi = 500)
 
-# Define cores
+# Volcano plots
 mycolors <- c("Upregulated" = "firebrick", "Downregulated" = "royalblue", "No sig" = "gray70")
 
-# Volcano plot - Tratamento 1 vs Controle
-ggplot(res_tb_1, aes(x = log2FoldChange, y = -log10(padj), color = Regulation)) +
+volcano1 <- ggplot(res_tb_1, aes(x = log2FoldChange, y = -log10(padj), color = Regulation)) +
   geom_point(alpha = 0.8, size = 1.5) +
   geom_vline(xintercept = c(-0.58, 0.58), linetype = "dashed", color = "grey") +
   geom_hline(yintercept = -log10(0.05), linetype = "dashed", color = "grey") +
   scale_color_manual(values = mycolors) +
   theme_bw() +
-  labs(title = "circx13x14x15x16 vs control",
-       x = "log2 Fold Change", y = "-log10 Adjusted p-value")
+  labs(title = "circx13x14x15x16 vs control", x = "log2 Fold Change", y = "-log10 Adjusted p-value")
 
-# Volcano plot - Tratamento 2 vs Controle
-ggplot(res_tb_2, aes(x = log2FoldChange, y = -log10(padj), color = Regulation)) +
+ggsave(filename = file.path(figures_dir, "Volcano_C3_vs_N.tiff"), plot = volcano1, units = "in", width = 7, height = 6, dpi = 500)
+
+volcano2 <- ggplot(res_tb_2, aes(x = log2FoldChange, y = -log10(padj), color = Regulation)) +
   geom_point(alpha = 0.8, size = 1.5) +
   geom_vline(xintercept = c(-0.58, 0.58), linetype = "dashed", color = "grey") +
   geom_hline(yintercept = -log10(0.05), linetype = "dashed", color = "grey") +
   scale_color_manual(values = mycolors) +
   theme_bw() +
-  labs(title = "circx13x16 vs control",
-       x = "log2 Fold Change", y = "-log10 Adjusted p-value")
+  labs(title = "circx13x16 vs control", x = "log2 Fold Change", y = "-log10 Adjusted p-value")
 
-# Obter os genes DEGs
+ggsave(filename = file.path(figures_dir, "Volcano_C2_vs_N.tiff"), plot = volcano2, units = "in", width = 7, height = 6, dpi = 500)
+
+# Heatmaps
 genes_deg_1 <- sig_DEG_1_vs_control$Genes
 heatmap_data_1 <- assay(vsd)[genes_deg_1, ]
-
-# Selecionar apenas amostras Tratamento 1 + Controle
 samples_1 <- rownames(colData)[colData$Condition %in% c("Control", "circRNAx13x14x15x16")]
 
+tiff(file.path(figures_dir, "Heatmap_C3_vs_N.tiff"), width = 9, height = 8, units = "in", res = 300)
 pheatmap(heatmap_data_1[, samples_1],
          scale = "row",
          cluster_rows = TRUE,
@@ -137,11 +125,13 @@ pheatmap(heatmap_data_1[, samples_1],
          annotation_col = colData[samples_1, , drop = FALSE],
          fontsize_col = 12,
          color = colorRampPalette(c("navy", "white", "firebrick3"))(50))
+dev.off()
+
 genes_deg_2 <- sig_DEG_2_vs_control$Genes
 heatmap_data_2 <- assay(vsd)[genes_deg_2, ]
-
 samples_2 <- rownames(colData)[colData$Condition %in% c("Control", "circRNAx13x16")]
 
+tiff(file.path(figures_dir, "Heatmap_C2_vs_N.tiff"), width = 9, height = 8, units = "in", res = 300)
 pheatmap(heatmap_data_2[, samples_2],
          scale = "row",
          cluster_rows = TRUE,
@@ -150,4 +140,4 @@ pheatmap(heatmap_data_2[, samples_2],
          annotation_col = colData[samples_2, , drop = FALSE],
          fontsize_col = 12,
          color = colorRampPalette(c("navy", "white", "firebrick3"))(50))
-
+dev.off()
