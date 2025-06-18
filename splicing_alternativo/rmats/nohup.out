@@ -1,0 +1,237 @@
+ls: cannot access '/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/N*_STAR_HsAligned.sortedByCoord.out.bam': No such file or directory
+ls: cannot access '/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/C2*_STAR_HsAligned.sortedByCoord.out.bam': No such file or directory
+ls: cannot access '/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/C3*_STAR_HsAligned.sortedByCoord.out.bam': No such file or directory
+Iniciando rMATS: C2 vs N
+WARNING: A .rmats file was found with no bams listed in it. Ignoring that file: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C2_vs_N/2025-06-06-16:28:59_686346_0.rmats
+ not found in .rmats files
+gtf: 72.35098075866699
+There are 78724 distinct gene ID in the gtf file
+There are 385659 distinct transcript ID in the gtf file
+There are 44569 one-transcript genes in the gtf file
+There are 2155005 exons in the gtf file
+There are 28952 one-exon transcripts in the gtf file
+There are 24526 one-transcript genes with only one exon in the transcript
+Average number of transcripts per gene is 4.898875
+Average number of exons per transcript is 5.587851
+Average number of exons per transcript excluding one-exon tx is 5.960222
+Average number of gene per geneGroup is 10.399993
+statistic: 0.08085799217224121
+Fail to open 
+
+read outcome totals across all BAMs
+USED: 0
+NOT_PAIRED: 0
+NOT_NH_1: 0
+NOT_EXPECTED_CIGAR: 0
+NOT_EXPECTED_READ_LENGTH: 0
+NOT_EXPECTED_STRAND: 0
+EXON_NOT_MATCHED_TO_ANNOTATION: 0
+JUNCTION_NOT_MATCHED_TO_ANNOTATION: 0
+CLIPPED: 0
+total: 0
+outcomes by BAM written to: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C2_vs_N/2025-06-06-16:28:59_686346_read_outcomes_by_bam.txt
+
+novel: 0.002840280532836914
+The splicing graph and candidate read have been saved into /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C2_vs_N/2025-06-06-16:28:59_686346_*.rmats
+save: 0.00023102760314941406
+Iniciando rMATS: C3 vs N
+WARNING: A .rmats file was found with no bams listed in it. Ignoring that file: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-06-06-16:30:15_032661_0.rmats
+ not found in .rmats files
+gtf: 65.36133098602295
+There are 78724 distinct gene ID in the gtf file
+There are 385659 distinct transcript ID in the gtf file
+There are 44569 one-transcript genes in the gtf file
+There are 2155005 exons in the gtf file
+There are 28952 one-exon transcripts in the gtf file
+There are 24526 one-transcript genes with only one exon in the transcript
+Average number of transcripts per gene is 4.898875
+Average number of exons per transcript is 5.587851
+Average number of exons per transcript excluding one-exon tx is 5.960222
+Average number of gene per geneGroup is 10.399993
+statistic: 0.0818943977355957
+Fail to open 
+
+read outcome totals across all BAMs
+USED: 0
+NOT_PAIRED: 0
+NOT_NH_1: 0
+NOT_EXPECTED_CIGAR: 0
+NOT_EXPECTED_READ_LENGTH: 0
+NOT_EXPECTED_STRAND: 0
+EXON_NOT_MATCHED_TO_ANNOTATION: 0
+JUNCTION_NOT_MATCHED_TO_ANNOTATION: 0
+CLIPPED: 0
+total: 0
+outcomes by BAM written to: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-06-06-16:30:15_032661_read_outcomes_by_bam.txt
+
+novel: 0.003118753433227539
+The splicing graph and candidate read have been saved into /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-06-06-16:30:15_032661_*.rmats
+save: 0.0001742839813232422
+Análises rMATS concluídas!
+ls: cannot access '/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/*N*_STAR_HsAligned.sortedByCoord.out.bam': No such file or directory
+ls: cannot access '/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/*C2*_STAR_HsAligned.sortedByCoord.out.bam': No such file or directory
+ls: cannot access '/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/*C3*_STAR_HsAligned.sortedByCoord.out.bam': No such file or directory
+Iniciando rMATS: C2 vs N
+WARNING: A .rmats file was found with no bams listed in it. Ignoring that file: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C2_vs_N/2025-06-06-16:28:59_686346_0.rmats
+WARNING: A .rmats file was found with no bams listed in it. Ignoring that file: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C2_vs_N/2025-06-06-16:36:42_680125_0.rmats
+ not found in .rmats files
+gtf: 64.156733751297
+There are 78724 distinct gene ID in the gtf file
+There are 385659 distinct transcript ID in the gtf file
+There are 44569 one-transcript genes in the gtf file
+There are 2155005 exons in the gtf file
+There are 28952 one-exon transcripts in the gtf file
+There are 24526 one-transcript genes with only one exon in the transcript
+Average number of transcripts per gene is 4.898875
+Average number of exons per transcript is 5.587851
+Average number of exons per transcript excluding one-exon tx is 5.960222
+Average number of gene per geneGroup is 10.399993
+statistic: 0.08216261863708496
+Fail to open 
+
+read outcome totals across all BAMs
+USED: 0
+NOT_PAIRED: 0
+NOT_NH_1: 0
+NOT_EXPECTED_CIGAR: 0
+NOT_EXPECTED_READ_LENGTH: 0
+NOT_EXPECTED_STRAND: 0
+EXON_NOT_MATCHED_TO_ANNOTATION: 0
+JUNCTION_NOT_MATCHED_TO_ANNOTATION: 0
+CLIPPED: 0
+total: 0
+outcomes by BAM written to: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C2_vs_N/2025-06-06-16:36:42_680125_read_outcomes_by_bam.txt
+
+novel: 0.003018617630004883
+The splicing graph and candidate read have been saved into /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C2_vs_N/2025-06-06-16:36:42_680125_*.rmats
+save: 0.0001728534698486328
+Iniciando rMATS: C3 vs N
+WARNING: A .rmats file was found with no bams listed in it. Ignoring that file: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-06-06-16:37:49_811449_0.rmats
+WARNING: A .rmats file was found with no bams listed in it. Ignoring that file: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-06-06-16:30:15_032661_0.rmats
+ not found in .rmats files
+gtf: 63.29126214981079
+There are 78724 distinct gene ID in the gtf file
+There are 385659 distinct transcript ID in the gtf file
+There are 44569 one-transcript genes in the gtf file
+There are 2155005 exons in the gtf file
+There are 28952 one-exon transcripts in the gtf file
+There are 24526 one-transcript genes with only one exon in the transcript
+Average number of transcripts per gene is 4.898875
+Average number of exons per transcript is 5.587851
+Average number of exons per transcript excluding one-exon tx is 5.960222
+Average number of gene per geneGroup is 10.399993
+statistic: 0.08184170722961426
+Fail to open 
+
+read outcome totals across all BAMs
+USED: 0
+NOT_PAIRED: 0
+NOT_NH_1: 0
+NOT_EXPECTED_CIGAR: 0
+NOT_EXPECTED_READ_LENGTH: 0
+NOT_EXPECTED_STRAND: 0
+EXON_NOT_MATCHED_TO_ANNOTATION: 0
+JUNCTION_NOT_MATCHED_TO_ANNOTATION: 0
+CLIPPED: 0
+total: 0
+outcomes by BAM written to: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-06-06-16:37:49_811449_read_outcomes_by_bam.txt
+
+novel: 0.003690958023071289
+The splicing graph and candidate read have been saved into /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-06-06-16:37:49_811449_*.rmats
+save: 0.00020956993103027344
+Análises rMATS concluídas!
+Iniciando rMATS: C2 vs N
+WARNING: A .rmats file was found with no bams listed in it. Ignoring that file: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C2_vs_N/2025-06-06-16:28:59_686346_0.rmats
+WARNING: A .rmats file was found with no bams listed in it. Ignoring that file: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C2_vs_N/2025-06-06-16:36:42_680125_0.rmats
+gtf: 62.434239625930786
+There are 78724 distinct gene ID in the gtf file
+There are 385659 distinct transcript ID in the gtf file
+There are 44569 one-transcript genes in the gtf file
+There are 2155005 exons in the gtf file
+There are 28952 one-exon transcripts in the gtf file
+There are 24526 one-transcript genes with only one exon in the transcript
+Average number of transcripts per gene is 4.898875
+Average number of exons per transcript is 5.587851
+Average number of exons per transcript excluding one-exon tx is 5.960222
+Average number of gene per geneGroup is 10.399993
+statistic: 0.0818028450012207
+
+read outcome totals across all BAMs
+USED: 322664260
+NOT_PAIRED: 279
+NOT_NH_1: 92792201
+NOT_EXPECTED_CIGAR: 8170735
+NOT_EXPECTED_READ_LENGTH: 247019609
+NOT_EXPECTED_STRAND: 0
+EXON_NOT_MATCHED_TO_ANNOTATION: 5441659
+JUNCTION_NOT_MATCHED_TO_ANNOTATION: 1246170
+CLIPPED: 63581506
+total: 740916419
+outcomes by BAM written to: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C2_vs_N/2025-06-06-16:42:43_762922_read_outcomes_by_bam.txt
+
+novel: 667.1643879413605
+The splicing graph and candidate read have been saved into /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C2_vs_N/2025-06-06-16:42:43_762922_*.rmats
+save: 32.09790635108948
+loadsg: 1.2605817317962646
+
+==========
+Done processing each gene from dictionary to compile AS events
+Found 189419 exon skipping events
+Found 30174 exon MX events
+Found 40616 alt SS events
+There are 24061 alt 3 SS events and 16555 alt 5 SS events.
+Found 13663 RI events
+==========
+
+ase: 10.311435222625732
+count: 37.85978889465332
+Processing count files.
+Done processing count files.
+Iniciando rMATS: C3 vs N
+WARNING: A .rmats file was found with no bams listed in it. Ignoring that file: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-06-06-16:37:49_811449_0.rmats
+WARNING: A .rmats file was found with no bams listed in it. Ignoring that file: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-06-06-16:30:15_032661_0.rmats
+gtf: 63.07776498794556
+There are 78724 distinct gene ID in the gtf file
+There are 385659 distinct transcript ID in the gtf file
+There are 44569 one-transcript genes in the gtf file
+There are 2155005 exons in the gtf file
+There are 28952 one-exon transcripts in the gtf file
+There are 24526 one-transcript genes with only one exon in the transcript
+Average number of transcripts per gene is 4.898875
+Average number of exons per transcript is 5.587851
+Average number of exons per transcript excluding one-exon tx is 5.960222
+Average number of gene per geneGroup is 10.399993
+statistic: 0.0800178050994873
+
+read outcome totals across all BAMs
+USED: 310830076
+NOT_PAIRED: 373
+NOT_NH_1: 90219263
+NOT_EXPECTED_CIGAR: 7760763
+NOT_EXPECTED_READ_LENGTH: 241165217
+NOT_EXPECTED_STRAND: 0
+EXON_NOT_MATCHED_TO_ANNOTATION: 4810717
+JUNCTION_NOT_MATCHED_TO_ANNOTATION: 1217866
+CLIPPED: 62466119
+total: 718470394
+outcomes by BAM written to: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-06-06-17:11:44_996369_read_outcomes_by_bam.txt
+
+novel: 641.775801897049
+The splicing graph and candidate read have been saved into /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-06-06-17:11:44_996369_*.rmats
+save: 33.48543739318848
+loadsg: 1.3238117694854736
+
+==========
+Done processing each gene from dictionary to compile AS events
+Found 192384 exon skipping events
+Found 31109 exon MX events
+Found 40645 alt SS events
+There are 24044 alt 3 SS events and 16601 alt 5 SS events.
+Found 13652 RI events
+==========
+
+ase: 10.30477237701416
+count: 36.47659945487976
+Processing count files.
+Done processing count files.
+Análises rMATS concluídas!
