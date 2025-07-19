@@ -12,6 +12,8 @@ library(matrixStats)
 library(reshape2)
 library(data.table)
 library(rtracklayer)
+library(ggrepel)
+
 
 # --- 1. Configuration ---
 base_dir <- "/work/pancreas/takemoto/RNA_seq/results/splicing_alternativo"
@@ -172,6 +174,7 @@ drim.prop <- drim.prop %>%
          prop = count / total) %>%
   ungroup()
 
+write.csv(drim.prop, file = "results/dtu/drim_prop.csv", row.names = FALSE)
 
 # Escolha um gene de interesse
 gene_alvo <- "ENSG00000000003.16"
@@ -198,47 +201,75 @@ drim_top <- drim.prop %>%
 mat <- as.matrix(drim_top[,-1])
 rownames(mat) <- drim_top$gene_transcript
 
+# Histograma dos -log10(p-valor ajustados) dos transcritos
+volcano_plot <- ggplot(results_stageR_tx, aes(x = log10p, fill = significant)) +
+  geom_histogram(bins = 50, color = "black") +
+  scale_fill_manual(values = c("TRUE" = "red", "FALSE" = "grey70"), name = "Significativo") +
+  labs(title = "Distribuição dos -log10(p-valor) ajustados (Transcritos)",
+       x = "-log10(p-valor ajustado)", y = "Número de transcritos") +
+  theme_minimal(base_size = 14)
+
+ggsave("results/dtu/hist_adjP_transcripts.png", volcano_plot, width = 8, height = 6, dpi = 300)
+
+
+# Barplot top 30 genes com mais transcritos significativos
+barplot_tx_gene <- ggplot(tx_by_gene, aes(x = reorder(gene_id, -Significant_Transcripts), y = Significant_Transcripts)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  labs(title = "Top 30 Genes com Mais Transcritos Significativos",
+       x = "Gene", y = "Nº de Transcritos Significativos") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5),
+        panel.grid.major.x = element_blank())
+
+ggsave("results/dtu/barplot_top30_genes_transcripts.png", barplot_tx_gene, width = 10, height = 7, dpi = 300)
+
+
+# Heatmap das proporções dos transcritos (top genes)
 pheatmap(mat, scale = "row",
          main = "Heatmap - Proporção de transcritos (Top genes)",
          clustering_distance_rows = "correlation",
          clustering_distance_cols = "euclidean",
-         fontsize_row = 7)
+         fontsize_row = 7,
+         filename = "results/dtu/heatmap_top_genes_transcripts.png")
 
 
-drim_gene_group <- drim.prop %>%
-  filter(gene_id == gene_alvo) %>%
-  left_join(samples[, c("sample", "condition")], by = c("sample")) %>%
-  group_by(feature_id, condition) %>%
-  summarise(mean_prop = mean(prop), .groups = "drop")
-
-ggplot(drim_gene_group, aes(x = feature_id, y = mean_prop, fill = condition)) +
+# Proporção média dos transcritos por condição (barras)
+barplot_gene_cond <- ggplot(drim_gene_group, aes(x = feature_id, y = mean_prop, fill = condition)) +
   geom_bar(stat = "identity", position = position_dodge()) +
   labs(title = paste("Proporção média dos transcritos por condição - gene", gene_alvo),
        x = "Transcrito", y = "Proporção média") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
+ggsave("results/dtu/barplot_mean_prop_by_condition.png", barplot_gene_cond, width = 10, height = 7, dpi = 300)
 
-library(ggrepel)
-
-drim_gene_scatter <- drim.prop %>%
-  filter(gene_id == gene_alvo) %>%
-  left_join(samples[, c("sample", "condition")], by = c("sample")) %>%
-  group_by(feature_id, condition) %>%
-  summarise(mean_prop = mean(prop), .groups = "drop") %>%
-  tidyr::pivot_wider(names_from = condition, values_from = mean_prop)
-
-ggplot(drim_gene_scatter, aes(x = Controle, y = Tratamento, label = feature_id)) +
-  geom_point(size = 3) +
-  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "red") +
-  geom_text_repel() +
-  labs(title = paste("Comparação da proporção média dos transcritos - gene", gene_alvo),
-       x = "Proporção média Controle", y = "Proporção média Tratamento") +
-  theme_minimal()
-
-
-ggplot(drim_gene, aes(x = sample, y = prop, fill = feature_id)) +
+# Proporção acumulada dos transcritos ao longo das amostras (area plot)
+area_prop_gene <- ggplot(drim_gene, aes(x = sample, y = prop, fill = feature_id)) +
   geom_area(alpha = 0.8 , position = 'stack') +
   labs(title = paste("Proporção acumulada dos transcritos - gene", gene_alvo),
        x = "Amostra", y = "Proporção acumulada") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
+ggsave("results/dtu/area_prop_transcripts_gene.png", area_prop_gene, width = 10, height = 6, dpi = 300)
+
+
+gene_alvo <- "ENSG00000102081.16"  # FMR1 com versão;
+
+# 2. Filtrar as proporções do gene
+fmr1_prop <- drim.prop %>%
+  filter(gene_id == gene_alvo)
+
+# 3. Adicionar a condição de cada amostra
+fmr1_prop <- fmr1_prop %>%
+  left_join(sample_info, by = c("sample" = "sample_id"))
+
+# 4. Criar boxplot
+boxplot_fmr1 <- ggplot(fmr1_prop, aes(x = feature_id, y = prop, fill = group)) +
+  geom_boxplot(outlier.shape = NA, width = 0.6) +
+  geom_jitter(shape = 21, size = 2, position = position_jitterdodge(jitter.width = 0.2), alpha = 0.7) +
+  labs(title = "FMR1 isoforms proportions per condition",
+       x = "Transcrito", y = "Expression proportion") +
+  theme_minimal(base_size = 14) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.title = element_blank())
+
+# 5. Salvar a figura
+ggsave("results/dtu/boxplot_FMR1_isoforms_by_condition.png", boxplot_fmr1, width = 10, height = 6, dpi = 300)

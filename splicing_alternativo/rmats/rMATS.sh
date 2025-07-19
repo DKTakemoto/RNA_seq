@@ -26,21 +26,8 @@ LIBTYPE="fr-unstranded"
 
 # Criar arquivos com listas de BAMs
 ls ${BAM_DIR}/*N*_STAR_Aligned.sortedByCoord.out.bam | paste -sd "," - > grupo_N.txt
-ls ${BAM_DIR}/*C2*_STAR_Aligned.sortedByCoord.out.bam | paste -sd "," - > grupo_C2.txt
 ls ${BAM_DIR}/*C3*_STAR_Aligned.sortedByCoord.out.bam | paste -sd "," - > grupo_C3.txt
 
-# Rodar comparação C2 vs N
-echo "Iniciando rMATS: C2 vs N"
-mkdir -p "$OUTPUT_DIR/output_C2_vs_N" "$OUTPUT_DIR/tmp_C2_vs_N"
-rmats.py \
-  --b1 grupo_N.txt \
-  --b2 grupo_C2.txt \
-  --gtf "$GTF" \
-  --od "$OUTPUT_DIR/output_C2_vs_N" \
-  --tmp "$OUTPUT_DIR/tmp_C2_vs_N" \
-  --readLength $READ_LENGTH \
-  --nthread $NTHREADS \
-  --libType $LIBTYPE
 
 # Rodar comparação C3 vs N
 echo "Iniciando rMATS: C3 vs N"

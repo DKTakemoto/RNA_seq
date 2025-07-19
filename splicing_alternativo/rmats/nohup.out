@@ -235,3 +235,84 @@ count: 36.47659945487976
 Processing count files.
 Done processing count files.
 Análises rMATS concluídas!
+Iniciando rMATS: C3 vs N
+WARNING: A .rmats file was found with no bams listed in it. Ignoring that file: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-06-06-16:37:49_811449_0.rmats
+WARNING: A .rmats file was found with no bams listed in it. Ignoring that file: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-06-06-18:04:24_640640_0.rmats
+WARNING: A .rmats file was found with no bams listed in it. Ignoring that file: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-06-06-16:30:15_032661_0.rmats
+/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/trimmed_N1_S747_S12_L001_STAR_Aligned.sortedByCoord.out.bam found 2 times in .rmats files
+/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/trimmed_N2_S747_S13_L001_STAR_Aligned.sortedByCoord.out.bam found 2 times in .rmats files
+/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/trimmed_N3_S747_S14_L001_STAR_Aligned.sortedByCoord.out.bam found 2 times in .rmats files
+/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/trimmed_N4_S747_S15_L001_STAR_Aligned.sortedByCoord.out.bam found 2 times in .rmats files
+/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/trimmed_C31_S747_S20_L001_STAR_Aligned.sortedByCoord.out.bam found 2 times in .rmats files
+/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/trimmed_C32_S747_S21_L001_STAR_Aligned.sortedByCoord.out.bam found 2 times in .rmats files
+/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/trimmed_C33_S747_S22_L001_STAR_Aligned.sortedByCoord.out.bam found 2 times in .rmats files
+/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/trimmed_C34_S747_S23_L001_STAR_Aligned.sortedByCoord.out.bam found 2 times in .rmats files
+gtf: 125.59491610527039
+There are 78724 distinct gene ID in the gtf file
+There are 385659 distinct transcript ID in the gtf file
+There are 44569 one-transcript genes in the gtf file
+There are 2155005 exons in the gtf file
+There are 28952 one-exon transcripts in the gtf file
+There are 24526 one-transcript genes with only one exon in the transcript
+Average number of transcripts per gene is 4.898875
+Average number of exons per transcript is 5.587851
+Average number of exons per transcript excluding one-exon tx is 5.960222
+Average number of gene per geneGroup is 10.399993
+statistic: 0.08391737937927246
+
+read outcome totals across all BAMs
+USED: 310830076
+NOT_PAIRED: 373
+NOT_NH_1: 90219263
+NOT_EXPECTED_CIGAR: 7760763
+NOT_EXPECTED_READ_LENGTH: 241165217
+NOT_EXPECTED_STRAND: 0
+EXON_NOT_MATCHED_TO_ANNOTATION: 4810717
+JUNCTION_NOT_MATCHED_TO_ANNOTATION: 1217866
+CLIPPED: 62466119
+total: 718470394
+outcomes by BAM written to: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-07-01-21:51:30_609470_read_outcomes_by_bam.txt
+
+novel: 1046.1961889266968
+The splicing graph and candidate read have been saved into /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-07-01-21:51:30_609470_*.rmats
+save: 48.567206144332886
+Análises rMATS concluídas!
+Iniciando rMATS: C3 vs N
+/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/trimmed_N1_S747_S12_L001_STAR_Aligned.sortedByCoord.out.bam found 3 times in .rmats files
+/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/trimmed_N2_S747_S13_L001_STAR_Aligned.sortedByCoord.out.bam found 3 times in .rmats files
+/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/trimmed_N3_S747_S14_L001_STAR_Aligned.sortedByCoord.out.bam found 3 times in .rmats files
+/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/trimmed_N4_S747_S15_L001_STAR_Aligned.sortedByCoord.out.bam found 3 times in .rmats files
+/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/trimmed_C31_S747_S20_L001_STAR_Aligned.sortedByCoord.out.bam found 3 times in .rmats files
+/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/trimmed_C32_S747_S21_L001_STAR_Aligned.sortedByCoord.out.bam found 3 times in .rmats files
+/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/trimmed_C33_S747_S22_L001_STAR_Aligned.sortedByCoord.out.bam found 3 times in .rmats files
+/work/pancreas/takemoto/RNA_seq/data/bam/bam_star/trimmed_C34_S747_S23_L001_STAR_Aligned.sortedByCoord.out.bam found 3 times in .rmats files
+gtf: 85.3606162071228
+There are 78724 distinct gene ID in the gtf file
+There are 385659 distinct transcript ID in the gtf file
+There are 44569 one-transcript genes in the gtf file
+There are 2155005 exons in the gtf file
+There are 28952 one-exon transcripts in the gtf file
+There are 24526 one-transcript genes with only one exon in the transcript
+Average number of transcripts per gene is 4.898875
+Average number of exons per transcript is 5.587851
+Average number of exons per transcript excluding one-exon tx is 5.960222
+Average number of gene per geneGroup is 10.399993
+statistic: 0.0862431526184082
+
+read outcome totals across all BAMs
+USED: 310830076
+NOT_PAIRED: 373
+NOT_NH_1: 90219263
+NOT_EXPECTED_CIGAR: 7760763
+NOT_EXPECTED_READ_LENGTH: 241165217
+NOT_EXPECTED_STRAND: 0
+EXON_NOT_MATCHED_TO_ANNOTATION: 4810717
+JUNCTION_NOT_MATCHED_TO_ANNOTATION: 1217866
+CLIPPED: 62466119
+total: 718470394
+outcomes by BAM written to: /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-07-02-11:05:17_938533_read_outcomes_by_bam.txt
+
+novel: 843.6863350868225
+The splicing graph and candidate read have been saved into /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/tmp_C3_vs_N/2025-07-02-11:05:17_938533_*.rmats
+save: 36.402892112731934
+Análises rMATS concluídas!

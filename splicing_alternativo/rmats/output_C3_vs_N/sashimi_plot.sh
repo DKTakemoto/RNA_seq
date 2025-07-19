@@ -63,7 +63,7 @@ for event in "${event_types[@]}"; do
         if (r1 >= 10 && r2 >= 10 &&
             avg1 >= 0.05 && avg1 <= 0.95 &&
             avg2 >= 0.05 && avg2 <= 0.95 &&
-            fdr <= 0.01 && dpsi >= 0.05)
+            fdr <= 0.01 && dpsi >= 0.2)
         {
             print $0
         }
@@ -100,4 +100,7 @@ for event in "${event_types[@]}"; do
         -o "$out_top10_dir"
 done
 
+rmats2summary \
+  -i /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/output_C3_vs_N \
+  -o /work/pancreas/takemoto/RNA_seq/results/splicing_alternativo/rmats/output_C3_vs_N
 echo "Todos os plots foram gerados com sucesso."
