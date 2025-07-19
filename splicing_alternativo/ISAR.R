@@ -117,7 +117,7 @@ pdf("/work/pancreas/takemoto/RNA_seq/results/ISAR/splicing_genome_wide.pdf")
 extractSplicingGenomeWide(
   switchTestResults,
   featureToExtract = 'all',
-  splicingToAnalyze = c('A3','MES','ATSS'),
+  splicingToAnalyze = c('A3','MES','ATSS', 'A5', 'ES', 'ATTS'),
   plot = TRUE,
   returnResult = FALSE
 )
