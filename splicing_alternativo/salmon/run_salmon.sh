@@ -30,7 +30,7 @@ if [ ! -d "$FASTQ_DIR" ]; then
 fi
 
 # Arquivo cDNA compactado
-CDNA_FASTA=$(ls "$TRANSCRIPTOME_DIR"/*.fa.gz 2>/dev/null | head -n 1)
+CDNA_FASTA=$(ls "$TRANSCRIPTOME_DIR"/gencode.v47.transcripts.fa.gz 2>/dev/null | head -n 1)
 
 if [ -z "$CDNA_FASTA" ]; then
     echo "Erro: Nenhum arquivo .fa.gz encontrado em $TRANSCRIPTOME_DIR" >&2

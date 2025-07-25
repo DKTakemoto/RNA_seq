@@ -1,4 +1,4 @@
-#!/usr/bin/env Rscript
+
 
 # Carregar bibliotecas
 library(DESeq2)

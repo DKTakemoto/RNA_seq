@@ -25,18 +25,18 @@ aSwitchList <- importRdata(
   isoformCountMatrix = isoformData$counts,
   isoformRepExpression = isoformData$abundance,
   designMatrix = designMatrix,
-  isoformExonAnno = "/work/pancreas/takemoto/RNA_seq/data/reference/database/Homo_sapiens.GRCh38.110.chr_patch_hapl_scaff.gtf.gz",
+  isoformExonAnno = "/work/pancreas/takemoto/RNA_seq/data/reference/database/gencode.v47.chr_patch_hapl_scaff.annotation.gtf.gz",
   removeNonConvensionalChr = TRUE,
   ignoreAfterPeriod = TRUE,
   showProgress = TRUE
 )
 
 # --- 2.1 Remove specific transcripts (optional cleanup) ---
-transcripts_to_remove <- c("ENST00000478848", "ENST00000611273")
-aSwitchList <- subsetSwitchAnalyzeRlist(
-  switchAnalyzeRlist = aSwitchList,
-  !aSwitchList$isoformFeatures$isoform_id %in% transcripts_to_remove
-)
+#transcripts_to_remove <- c("ENST00000478848", "ENST00000611273")
+#aSwitchList <- subsetSwitchAnalyzeRlist(
+#  switchAnalyzeRlist = aSwitchList,
+#  !aSwitchList$isoformFeatures$isoform_id %in% transcripts_to_remove
+#)
 
 # --- 3. Filtering ---
 aSwitchListFiltered <- preFilter(

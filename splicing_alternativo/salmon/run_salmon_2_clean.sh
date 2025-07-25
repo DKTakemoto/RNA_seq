@@ -4,8 +4,8 @@
 #PBS -l nodes=1:ppn=8
 #PBS -l mem=64gb
 #PBS -l vmem=70gb
-#PBS -o /work/pancreas/takemoto/RNA_seq/logs/salmon_quant.out
-#PBS -e /work/pancreas/takemoto/RNA_seq/logs/salmon_quant.err
+#PBS -o /work/pancreas/takemoto/RNA_seq/logs/logs_salmon/salmon_quant.out
+#PBS -e /work/pancreas/takemoto/RNA_seq/logs/logs_salmon/salmon_quant.err
 #PBS -V
 #PBS -M daniel.takemoto@usp.br
 #PBS -m abe
@@ -19,11 +19,11 @@ OUTPUT_DIR="$BASE_DIR/results/splicing_alternativo/salmon"
 THREADS=8
 
 # Arquivo de referência
-CDNA_FASTA=$(ls "$TRANSCRIPTOME_DIR"/*.fa.gz | head -n 1)
+CDNA_FASTA=$(ls "$TRANSCRIPTOME_DIR"/gencode.v47.transcripts.fa.gz | head -n 1)
 
 # Criar índice do Salmon (assume que será criado sempre)
 echo "Criando índice para Salmon..."
-salmon index -t "$CDNA_FASTA" -i "$SALMON_INDEX"
+salmon index -t "$CDNA_FASTA" -i "$SALMON_INDEX" --gencode
 
 # Criar diretório de saída
 mkdir -p "$OUTPUT_DIR"
@@ -38,11 +38,10 @@ sample_output_dir="$OUTPUT_DIR/$sample"
 echo "Processando $sample..."
 mkdir -p "$sample_output_dir"
 
-# -l A tells automatically if unstranded or stranded
 # -p ammount of threads
 # -o output dir
 # --gcBias to learn and correct for fragment-level GC biases in the input data
-salmon quant -i "$SALMON_INDEX" -l A \
+salmon quant -i "$SALMON_INDEX" --libType A \
 -1 "$fq1" -2 "$fq2" \
 -p $THREADS -o "$sample_output_dir" \
 --gcBias --validateMappings
